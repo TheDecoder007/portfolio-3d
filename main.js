@@ -3,6 +3,7 @@ import './style.css'
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { Vector3, WebGLArrayRenderTarget } from 'three';
 
 const scene = new THREE.Scene();
 
@@ -15,16 +16,17 @@ const renderer = new THREE.WebGL1Renderer({
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight );
 camera.position.setZ(30);
+const murphTexture = new THREE.TextureLoader().load('MurpheusFace.jpeg')
 
 const geometry  = new THREE.TorusGeometry( 10, 3, 16, 100 )
-const material = new THREE.MeshStandardMaterial( { color: 0xFF6347 } );
+const material = new THREE.MeshStandardMaterial( { map: murphTexture } );
 const torus = new THREE.Mesh( geometry, material );
 scene.add(torus)
 
 const loader = new GLTFLoader();
-loader.load( 'Murph_Sparkles.glb', function (gltf) {
-
+loader.load( 'Murph_Sparkles.glb', function (gltf)  {
   scene.add(gltf.scene);
+  // gtlf.scene.scale: Vector3(4,4,4);
 });
 
 const pointLight2 = new THREE.PointLight(0xffffff)
@@ -36,13 +38,25 @@ pointLight.position.set(5, 5, 5,)
 const ambientLight = new THREE.AmbientLight(0xffffff)
 scene.add(pointLight, pointLight2, ambientLight)
 
-const lightHelper = new THREE.PointLightHelper(pointLight)
-const lightHelper2 = new THREE.PointLightHelper(pointLight2)
+// const lightHelper = new THREE.PointLightHelper(pointLight)
+// const lightHelper2 = new THREE.PointLightHelper(pointLight2)
 
-const gridHelper = new THREE.GridHelper(200, 50);
-scene.add(lightHelper, lightHelper2, gridHelper)
+// const gridHelper = new THREE.GridHelper(200, 50);
+// scene.add(lightHelper, lightHelper2, gridHelper)
  
 const controls = new OrbitControls(camera, renderer.domElement);
+
+
+const murph = new THREE.Mesh(
+  new THREE.BoxGeometry(3,3.5,3),
+  new THREE.MeshBasicMaterial( { map: murphTexture } )
+);
+
+scene.add(murph);
+murph.position.z = -30;
+murph.position.setX(-5);
+
+
 
 function addStar() {
  const geometry = new THREE.SphereGeometry(0.25, 24, 24);
@@ -60,6 +74,17 @@ Array(200).fill().forEach(addStar)
 const spaceTexture = new THREE.TextureLoader().load('CloudsGood.jpg');
 scene.background = spaceTexture;
 
+function moveCamera() {
+
+  const t = document.body.getBoundingClientRect().top;
+  murph.rotation.y += 0.05;
+
+  camera.position.z = t * -0.01;
+  camera.position.x = t * -0.0002;
+  camera.position.y = t * -0.0002;
+}
+
+document.body.onscroll = moveCamera
 
 function animate() {
     requestAnimationFrame( animate );
