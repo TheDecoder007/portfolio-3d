@@ -32,6 +32,10 @@ header {
   margin-bottom: 20px;
 }
 
+header h2 {
+  text-shadow: 0 0 10px aliceblue;
+}
+
 section {
   grid-column: 2 / 8;
   padding: 1rem;
@@ -50,4 +54,24 @@ blockquote {
 
 p {
   font-size: x-large;
+}
+
+#video {
+  display: none;
+}
+
+a {
+  color: aliceblue;
+  font-size: xxx-large;
+  text-shadow: 0 0 10px white;
+
+}
+
+#link {
+  grid-column: 4 / 12;
+}
+
+#goals {
+  grid-column: 6 / 12;
+
 }

@@ -19,6 +19,8 @@ camera.position.setZ(2);
 camera.position.setX(0)
 camera.position.setY(1)
 
+// const video = document.getElementById( 'video' );
+// const decoder = new THREE.VideoTexture( video );
 
 const murphTexture = new THREE.TextureLoader().load('MurpheusFace.jpeg')
 const spaceTexture = new THREE.TextureLoader().load('CloudsGoodDark.jpg');
@@ -37,8 +39,8 @@ loader.load( 'Murph_Sparkles.glb', function (gltf)  {
   scene.add(gltf.scene);
   gltf.scene.position.y = -1.2;
 
-  gtlf.scene.scale(4, 4, 4);
- 
+  gtlf.scene = new THREE.Vector3.scale(10, 10, 10);
+
 
 });
 
