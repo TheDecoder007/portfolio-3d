@@ -3,6 +3,8 @@ canvas {
   position: fixed;
   top: 0;
   left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 main {
@@ -46,3 +48,6 @@ blockquote {
   margin-bottom: 20px;
 }
 
+p {
+  font-size: x-large;
+}
