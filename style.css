@@ -27,13 +27,14 @@ h1, h2, h3, blockquote {
 
 header {
   background: none;
-  grid-column: 2 / span 5;
+  grid-column: 5 / 8;
   font-size: 2rem;
-  margin-bottom: 20px;
 }
 
-header h2 {
+
+#intro h2 {
   text-shadow: 0 0 10px aliceblue;
+  font-size: 3rem;
 }
 
 section {
