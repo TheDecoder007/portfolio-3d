@@ -33,7 +33,7 @@ header {
 
 
 #intro h2 {
-  text-shadow: 0 0 10px aliceblue;
+  text-shadow: 0 0 10px red;
   font-size: 3rem;
 }
 
@@ -64,7 +64,7 @@ p {
 a {
   color: aliceblue;
   font-size: xxx-large;
-  text-shadow: 0 0 10px white;
+  text-shadow: 0 0 10px red;
 
 }
 
